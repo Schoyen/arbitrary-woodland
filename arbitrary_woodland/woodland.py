@@ -8,7 +8,7 @@ class ArbitraryWoodland:
         self.num_trees = num_trees
         self.sample_ratio = sample_ratio
 
-    def fit(self, X, y) -> ArbitraryWoodland:
+    def fit(self, X, y):
         self.trees = []
 
         for i in range(self.num_trees):
