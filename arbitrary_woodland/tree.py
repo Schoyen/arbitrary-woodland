@@ -13,6 +13,27 @@ class DecisionTree:
 
         return self
 
+    def predict(self, X):
+        y = np.zeros(len(X))
+
+        node = self.root
+        for i, row in enumerate(X):
+            y[i] = self._predict(row, node)
+
+        return y
+
+    def _predict(self, row, node: dict) -> float:
+        if row[node["index"]] < node["value"]:
+            if isinstance(node["left"], dict):
+                return self._predict(row, node["left"])
+            else:
+                return node["left"]
+        else:
+            if isinstance(node["right"], dict):
+                return self._predict(row, node["right"])
+            else:
+                return node["right"]
+
     def _get_split(self, X, y) -> dict:
         classes = np.unique(y)
         node = {"index": 1000, "value": 1000, "groups": None}
