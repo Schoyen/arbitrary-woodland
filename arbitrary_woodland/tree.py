@@ -6,10 +6,11 @@ class DecisionTree:
     def __init__(self, max_depth: int, min_size: int, num_features: int):
         self.max_depth = max_depth
         self.min_size = min_size
+        self.num_features = num_features
 
-    def fit(self, X, y) -> DecisionTree:
+    def fit(self, X, y):
         self.root = self._get_split(X, y)
-        self._split(root, 1)
+        self._split(self.root, 1)
 
         return self
 
@@ -40,10 +41,12 @@ class DecisionTree:
 
         score = 1000
 
-        indices = np.random.choice(len(X[0]), size=num_features, replace=False)
+        indices = np.random.choice(
+            len(X[0]), size=self.num_features, replace=False
+        )
 
         for index in indices:
-            for i in len(X):
+            for i in range(len(X)):
                 group_indices = X[:, index] < X[i, index]
                 groups = (X[group_indices], X[~group_indices])
                 gini = gini_impurity(groups, classes)
@@ -80,13 +83,13 @@ class DecisionTree:
             node["left"] = self._end_node(left_y)
         else:
             node["left"] = self._get_split(left, left_y)
-            split(node["left"], depth + 1)
+            self._split(node["left"], depth + 1)
 
         if len(right) <= self.min_size:
             node["right"] = self._end_node(right_y)
         else:
             node["right"] = self._get_split(right, right_y)
-            split(node["right"], depth + 1)
+            self._split(node["right"], depth + 1)
 
     def _end_node(self, y):
         _, idx, counts = np.unique(y, return_index=True, return_counts=True)
