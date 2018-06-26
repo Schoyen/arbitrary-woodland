@@ -9,6 +9,9 @@ class DecisionTree:
         self.num_features = num_features
 
     def fit(self, X, y):
+        if self.num_features == "auto":
+            self.num_features = round(float(np.sqrt(len(X[0]))))
+
         self.root = self._get_split(X, y)
         self._split(self.root, 1)
 
