@@ -14,11 +14,7 @@ def test_decision_tree():
         X, y, test_size=0.2
     )
 
-    max_depth = 100
-    min_size = 4
-    num_features = round(float(np.sqrt(len(X[0]))))
-
-    tree = DecisionTree(max_depth, min_size, num_features)
+    tree = DecisionTree()
 
     tree.fit(X_train, y_train)
     pred = tree.predict(X_test)
