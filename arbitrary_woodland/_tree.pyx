@@ -5,12 +5,12 @@ from arbitrary_woodland.gini import gini_impurity
 
 np.import_array()
 
-def _get_split(
+def get_split(
         np.ndarray[double, ndim=2] X,
-        np.ndarray[double, ndim=1] y,
+        np.ndarray[long, ndim=1] y,
         int num_features
 ):
-    cdef np.ndarray[int, ndim=1] classes, indices, group_indices
+    cdef np.ndarray[long, ndim=1] classes, indices
     cdef dict node
     cdef double score, gini
     cdef int index, i
