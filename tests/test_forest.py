@@ -14,16 +14,7 @@ def test_forest():
         X, y, test_size=0.2
     )
 
-    num_trees = 10
-    sample_ratio = 0.7
-
-    max_depth = 100
-    min_size = 4
-    num_features = round(float(np.sqrt(len(X[0]))))
-
-    args = [max_depth, min_size, num_features]
-
-    forest = ArbitraryWoodland(num_trees, sample_ratio, *args)
+    forest = ArbitraryWoodland()
 
     forest.fit(X_train, y_train)
     pred = forest.predict(X_test)
