@@ -6,3 +6,12 @@ __pycache__
 
 # Pytest cache
 .pytest_cache
+
+# Build directory
+build
+
+# Shared library
+*.so
+
+# Cython C-code
+_*.c
