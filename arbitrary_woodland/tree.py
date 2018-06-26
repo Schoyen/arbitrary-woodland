@@ -3,7 +3,7 @@ from arbitrary_woodland.gini import gini_impurity
 
 
 class DecisionTree:
-    def __init__(self, max_depth: int, min_size: int, num_features: int):
+    def __init__(self, max_depth=100, min_size=4, num_features="auto"):
         self.max_depth = max_depth
         self.min_size = min_size
         self.num_features = num_features
