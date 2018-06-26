@@ -17,6 +17,6 @@ python:
 before_install:
         - pip install -r requirements.txt
 install:
-        - pip install .
+        - python3 setup.py build_ext
 script:
         - pytest
