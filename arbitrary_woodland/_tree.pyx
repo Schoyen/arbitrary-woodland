@@ -28,7 +28,7 @@ def get_split(
     for index in indices:
         for i in range(len(X)):
             group_indices = X[:, index] < X[i, index]
-            groups = (X[group_indices], X[~group_indices])
+            groups = (y[group_indices], y[~group_indices])
             gini = gini_impurity(groups, classes)
 
             if gini < score:
