@@ -34,7 +34,7 @@ def get_split(
             if gini < score:
                 node["index"] = index
                 node["value"] = X[i, index]
-                node["groups"] = groups
+                node["groups"] = (X[group_indices], X[~group_indices])
                 node["groups_y"] = (y[group_indices], y[~group_indices])
 
     return node
